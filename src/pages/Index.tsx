@@ -26,18 +26,21 @@ const Index = () => {
 
   return (
     <ThemeProvider defaultTheme="system">
-      <div className="relative min-h-screen bird-sky-bg">
-        <ThreeBackground />
-        <Navbar />
-        <main>
-          <HeroSection/>
-          <AboutSection/>
-          <ProjectsSection />
-          {/* The projects-section will display the new Zomato project */}
-          <EducationSection/>
-          <ContactSection/>
-        </main>
-        <Footer />
+      <div className="relative min-h-screen bg-gradient-to-b from-sky-400 to-blue-600 dark:from-sky-900 dark:to-blue-950">
+        <div className="absolute inset-0 pointer-events-none opacity-90">
+          <ThreeBackground />
+        </div>
+        <div className="relative z-10">
+          <Navbar />
+          <main className="relative">
+            <HeroSection />
+            <AboutSection />
+            <ProjectsSection />
+            <EducationSection />
+            <ContactSection />
+          </main>
+          <Footer />
+        </div>
       </div>
     </ThemeProvider>
   );

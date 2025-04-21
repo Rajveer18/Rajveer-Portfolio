@@ -7,8 +7,8 @@ export function HeroSection() {
   
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
-      const x = (e.clientX / window.innerWidth - 0.5) * 20;
-      const y = (e.clientY / window.innerHeight - 0.5) * 10;
+      const x = (e.clientX / window.innerWidth - 0.5) * 40;
+      const y = (e.clientY / window.innerHeight - 0.5) * 20;
       setMousePosition({ x, y });
     };
 
@@ -19,14 +19,18 @@ export function HeroSection() {
   return (
     <section className="relative pt-16 pb-20 md:py-28 overflow-hidden">
       <div className="container mx-auto px-4">
-        <div className="flex flex-col items-center text-center">
+        <div className="flex flex-col items-center text-center perspective-1000">
           <div 
-            className="animate-fade-in transition-transform duration-200 ease-out"
+            className="animate-fade-in transform-gpu transition-all duration-300 ease-out hover:scale-105"
             style={{ 
-              transform: `translate(${mousePosition.x}px, ${mousePosition.y}px)`,
+              transform: `
+                translate3d(${mousePosition.x}px, ${mousePosition.y}px, 0)
+                rotateX(${mousePosition.y * 0.1}deg)
+                rotateY(${-mousePosition.x * 0.1}deg)
+              `,
             }}
           >
-            <h1 className="text-4xl md:text-6xl font-bold mb-4 font-heading">
+            <h1 className="text-4xl md:text-6xl font-bold mb-4 font-heading text-balance bg-clip-text">
               Rajveer Raj
             </h1>
             <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-2xl text-pretty">
@@ -38,8 +42,8 @@ export function HeroSection() {
             className="flex flex-wrap justify-center gap-4 mb-10 animate-fade-in" 
             style={{ 
               animationDelay: "200ms",
-              transform: `translate(${mousePosition.x * 0.5}px, ${mousePosition.y * 0.5}px)`,
-              transition: 'transform 0.2s ease-out'
+              transform: `translate3d(${mousePosition.x * 0.3}px, ${mousePosition.y * 0.3}px, 0)`,
+              transition: 'all 0.3s ease-out'
             }}
           >
             <Button asChild variant="outline" size="lg" className="gap-2 rounded-full">
@@ -69,11 +73,15 @@ export function HeroSection() {
           </div>
 
           <div 
-            className="w-full max-w-3xl mx-auto bg-card border border-border rounded-lg p-6 shadow-lg animate-fade-in" 
+            className="w-full max-w-3xl mx-auto glass rounded-lg p-6 shadow-lg animate-fade-in" 
             style={{ 
               animationDelay: "400ms",
-              transform: `translate(${mousePosition.x * 0.3}px, ${mousePosition.y * 0.3}px)`,
-              transition: 'transform 0.2s ease-out'
+              transform: `
+                translate3d(${mousePosition.x * 0.2}px, ${mousePosition.y * 0.2}px, 0)
+                rotateX(${mousePosition.y * 0.05}deg)
+                rotateY(${-mousePosition.x * 0.05}deg)
+              `,
+              transition: 'all 0.3s ease-out'
             }}
           >
             <h2 className="text-xl font-semibold mb-3">Summary</h2>
