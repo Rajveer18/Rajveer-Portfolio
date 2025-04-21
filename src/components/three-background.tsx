@@ -1,5 +1,4 @@
-
-import React, { useRef } from "react";
+import React from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 
@@ -68,16 +67,15 @@ function Particles() {
   );
 }
 
+// This will serve as a "glassmorphism" fixed overlay for the bird/sky look.
+// No more three.js, just a beautiful CSS background.
 export const ThreeBackground = () => {
   return (
-    <div className="fixed inset-0 -z-10">
-      <Canvas
-        camera={{ position: [0, 0, 60], fov: 75 }}
-        gl={{ antialias: true, alpha: false }}
-        style={{ background: "#07192f" }}
-      >
-        <Particles />
-      </Canvas>
-    </div>
+    <div
+      className="fixed inset-0 -z-10 bird-sky-bg"
+      aria-hidden="true"
+    />
   );
 };
+
+// Add the styles for "bird-sky-bg" in index.css.

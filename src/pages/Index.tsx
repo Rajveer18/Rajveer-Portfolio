@@ -26,15 +26,16 @@ const Index = () => {
 
   return (
     <ThemeProvider defaultTheme="system">
-      <div className="relative min-h-screen animated-gradient-bg">
+      <div className="relative min-h-screen bird-sky-bg">
         <ThreeBackground />
         <Navbar />
         <main>
-          <HeroSection />
-          <AboutSection />
+          <HeroSection/>
+          <AboutSection/>
           <ProjectsSection />
-          <EducationSection />
-          <ContactSection />
+          {/* The projects-section will display the new Zomato project */}
+          <EducationSection/>
+          <ContactSection/>
         </main>
         <Footer />
       </div>
