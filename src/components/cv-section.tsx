@@ -1,31 +1,9 @@
 
-import { FileText, Download } from "lucide-react";
+import { FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { toast } from "@/hooks/use-toast";
 
 export function CVSection() {
-  const handleDownload = () => {
-    // Direct link to the file
-    const pdfUrl = "https://drive.google.com/uc?export=download&id=1fioDaUXk0MOYn4tfmb_g4XvkAArCkyyY";
-    
-    try {
-      // Open in a new tab which will trigger the download
-      window.open(pdfUrl, '_blank');
-      
-      toast({
-        title: "Download Initiated",
-        description: "Your CV download has been initiated in a new tab.",
-      });
-    } catch (error) {
-      toast({
-        title: "Download Failed",
-        description: "Please try using the View CV Online button instead.",
-        variant: "destructive"
-      });
-    }
-  };
-
   return (
     <section id="cv" className="py-16 md:py-24">
       <div className="container mx-auto px-4">
@@ -44,20 +22,10 @@ export function CVSection() {
             
             <div className="flex flex-wrap gap-4 justify-center">
               <Button 
-                onClick={handleDownload}
-                size="lg" 
-                className="gap-2"
-                variant="default"
-              >
-                <Download className="w-5 h-5" />
-                Download CV
-              </Button>
-              
-              <Button 
                 asChild
                 size="lg" 
                 className="gap-2"
-                variant="outline"
+                variant="default"
               >
                 <a 
                   href="https://drive.google.com/file/d/1fioDaUXk0MOYn4tfmb_g4XvkAArCkyyY/view" 
