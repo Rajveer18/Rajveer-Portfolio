@@ -6,12 +6,12 @@ import { toast } from "@/hooks/use-toast";
 
 export function CVSection() {
   const handleDownload = () => {
-    // Use the direct Google Drive export download link
-    const googleDriveLink = "https://drive.google.com/uc?export=download&id=1fioDaUXk0MOYn4tfmb_g4XvkAArCkyyY";
+    // Direct link to the file
+    const pdfUrl = "https://drive.google.com/uc?export=download&id=1fioDaUXk0MOYn4tfmb_g4XvkAArCkyyY";
     
     try {
-      // Open the link in a new tab to initiate download
-      window.open(googleDriveLink, "_blank");
+      // Open in a new tab which will trigger the download
+      window.open(pdfUrl, '_blank');
       
       toast({
         title: "Download Initiated",

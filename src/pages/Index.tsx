@@ -46,6 +46,6 @@ const Index = () => {
       </div>
     </ThemeProvider>
   );
-};
+}
 
 export default Index;

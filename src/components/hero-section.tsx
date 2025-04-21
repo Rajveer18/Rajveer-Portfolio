@@ -2,8 +2,6 @@
 import { Github, Linkedin, Mail, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
-import { Canvas } from "@react-three/fiber";
-import { SkillsCard } from "./three-card";
 
 export function HeroSection() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -35,10 +33,10 @@ export function HeroSection() {
               transformStyle: 'preserve-3d',
             }}
           >
-            <h1 className="text-4xl md:text-6xl font-bold mb-4 font-heading text-balance bg-clip-text text-white drop-shadow-lg">
+            <h1 className="text-4xl md:text-6xl font-bold mb-4 font-heading text-balance bg-clip-text text-gray-900 dark:text-white drop-shadow-lg">
               Rajveer Raj
             </h1>
-            <p className="text-xl md:text-2xl mb-8 max-w-2xl text-pretty text-white/90 font-medium drop-shadow-md"
+            <p className="text-xl md:text-2xl mb-8 max-w-2xl text-pretty text-gray-700 dark:text-white/90 font-medium drop-shadow-md"
                style={{ 
                  transform: 'translateZ(20px)',
                }}>
@@ -60,25 +58,25 @@ export function HeroSection() {
               transition: 'all 0.4s ease-out'
             }}
           >
-            <Button asChild variant="outline" size="lg" className="gap-2 rounded-full bg-white/10 backdrop-blur-md text-white hover:bg-white/20">
+            <Button asChild variant="outline" size="lg" className="gap-2 rounded-full bg-white/10 backdrop-blur-md hover:bg-white/20">
               <a href="mailto:rajveermatubay@gmail.com">
                 <Mail className="w-4 h-4" />
                 Email Me
               </a>
             </Button>
-            <Button asChild variant="outline" size="lg" className="gap-2 rounded-full bg-white/10 backdrop-blur-md text-white hover:bg-white/20">
+            <Button asChild variant="outline" size="lg" className="gap-2 rounded-full bg-white/10 backdrop-blur-md hover:bg-white/20">
               <a href="tel:7254957446">
                 <Phone className="w-4 h-4" />
                 Call Me
               </a>
             </Button>
-            <Button asChild variant="outline" size="lg" className="gap-2 rounded-full bg-white/10 backdrop-blur-md text-white hover:bg-white/20">
+            <Button asChild variant="outline" size="lg" className="gap-2 rounded-full bg-white/10 backdrop-blur-md hover:bg-white/20">
               <a href="https://github.com/Rajveer18" target="_blank" rel="noreferrer">
                 <Github className="w-4 h-4" />
                 GitHub
               </a>
             </Button>
-            <Button asChild variant="outline" size="lg" className="gap-2 rounded-full bg-white/10 backdrop-blur-md text-white hover:bg-white/20">
+            <Button asChild variant="outline" size="lg" className="gap-2 rounded-full bg-white/10 backdrop-blur-md hover:bg-white/20">
               <a href="https://linkedin.com/in/rajveerraj" target="_blank" rel="noreferrer">
                 <Linkedin className="w-4 h-4" />
                 LinkedIn
@@ -100,8 +98,8 @@ export function HeroSection() {
               transition: 'all 0.5s ease-out'
             }}
           >
-            <h2 className="text-xl font-semibold mb-3 text-white">Summary</h2>
-            <p className="text-white/90 text-pretty">
+            <h2 className="text-xl font-semibold mb-3 text-gray-900 dark:text-white">Summary</h2>
+            <p className="text-gray-700 dark:text-white/90 text-pretty">
               Aspiring data scientist with a solid foundation in Python, SQL, and data analytics. 
               Proficient in leveraging data-driven insights and machine learning to solve complex problems. 
               Eager to apply analytical skills and technical expertise in a challenging role at a leading FASP company. 
