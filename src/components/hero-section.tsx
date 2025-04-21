@@ -21,14 +21,6 @@ export function HeroSection() {
 
   return (
     <section className="relative pt-16 pb-20 md:py-28 overflow-hidden">
-      <div className="absolute inset-0 pointer-events-none">
-        <Canvas camera={{ position: [0, 0, 8], fov: 45 }}>
-          <ambientLight intensity={0.5} />
-          <pointLight position={[10, 10, 10]} />
-          <SkillsCard />
-        </Canvas>
-      </div>
-      
       <div className="container relative mx-auto px-4 z-10">
         <div className="flex flex-col items-center text-center perspective-[1000px]">
           <div 
