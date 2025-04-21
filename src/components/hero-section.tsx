@@ -1,13 +1,31 @@
-
 import { Github, Linkedin, Mail, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useEffect, useState } from "react";
 
 export function HeroSection() {
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      const x = (e.clientX / window.innerWidth - 0.5) * 20;
+      const y = (e.clientY / window.innerHeight - 0.5) * 10;
+      setMousePosition({ x, y });
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, []);
+
   return (
     <section className="relative pt-16 pb-20 md:py-28 overflow-hidden">
       <div className="container mx-auto px-4">
         <div className="flex flex-col items-center text-center">
-          <div className="animate-fade-in">
+          <div 
+            className="animate-fade-in transition-transform duration-200 ease-out"
+            style={{ 
+              transform: `translate(${mousePosition.x}px, ${mousePosition.y}px)`,
+            }}
+          >
             <h1 className="text-4xl md:text-6xl font-bold mb-4 font-heading">
               Rajveer Raj
             </h1>
@@ -16,7 +34,14 @@ export function HeroSection() {
             </p>
           </div>
 
-          <div className="flex flex-wrap justify-center gap-4 mb-10 animate-fade-in" style={{ animationDelay: "200ms" }}>
+          <div 
+            className="flex flex-wrap justify-center gap-4 mb-10 animate-fade-in" 
+            style={{ 
+              animationDelay: "200ms",
+              transform: `translate(${mousePosition.x * 0.5}px, ${mousePosition.y * 0.5}px)`,
+              transition: 'transform 0.2s ease-out'
+            }}
+          >
             <Button asChild variant="outline" size="lg" className="gap-2 rounded-full">
               <a href="mailto:rajveermatubay@gmail.com">
                 <Mail className="w-4 h-4" />
@@ -43,7 +68,14 @@ export function HeroSection() {
             </Button>
           </div>
 
-          <div className="w-full max-w-3xl mx-auto bg-card border border-border rounded-lg p-6 shadow-lg animate-fade-in" style={{ animationDelay: "400ms" }}>
+          <div 
+            className="w-full max-w-3xl mx-auto bg-card border border-border rounded-lg p-6 shadow-lg animate-fade-in" 
+            style={{ 
+              animationDelay: "400ms",
+              transform: `translate(${mousePosition.x * 0.3}px, ${mousePosition.y * 0.3}px)`,
+              transition: 'transform 0.2s ease-out'
+            }}
+          >
             <h2 className="text-xl font-semibold mb-3">Summary</h2>
             <p className="text-muted-foreground text-pretty">
               Aspiring data scientist with a solid foundation in Python, SQL, and data analytics. 
