@@ -2,7 +2,7 @@
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 
-// Replace this with suitable photo paths for each project.
+// Updated photo url for Zomato Price Prediction project
 const projects = [
   {
     id: 1,
@@ -35,7 +35,7 @@ const projects = [
     id: 4,
     title: "Zomato Price Prediction",
     timeline: "Jan 2024 - Mar 2024",
-    image: "/lovable-uploads/148171ad-7d95-46a9-952e-6863f5e314e5.png",
+    image: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?auto=format&fit=crop&w=400&q=80",
     description: "Developed a machine learning model to predict menu prices on Zomato based on restaurant type, cuisine, ratings, reviews, and location, using extensive data scraping and preprocessing.",
     tools: ["Python", "Pandas", "Scikit-Learn", "XGBoost", "BeautifulSoup"],
     achievements: "Enabled restaurant owners to competitively price menus and users to estimate meal costs accurately via web-based analytics dashboard."
@@ -93,3 +93,4 @@ export function ProjectsSection() {
     </section>
   );
 }
+
