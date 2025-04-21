@@ -76,9 +76,9 @@ export function HeroSection() {
               </a>
             </Button>
             <Button asChild variant="outline" size="lg" className="gap-2 rounded-full">
-              <a href="https://opencerta/" target="_blank" rel="noreferrer">
+              <a href="https://linkedin.com/in/rajveerraj" target="_blank" rel="noreferrer">
                 <Linkedin className="w-4 h-4" />
-                OpenCerta
+                LinkedIn
               </a>
             </Button>
           </div>
