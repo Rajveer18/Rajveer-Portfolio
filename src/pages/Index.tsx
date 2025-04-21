@@ -27,7 +27,7 @@ const Index = () => {
 
   return (
     <ThemeProvider defaultTheme="system">
-      <div className="relative min-h-screen bg-gradient-to-b from-sky-400 to-blue-600 dark:from-sky-900 dark:to-blue-950">
+      <div className="relative min-h-screen bg-gradient-to-b from-[#1A1F2C] to-[#2C3E50] dark:from-[#1A1F2C] dark:to-[#0F172A]">
         <div className="absolute inset-0 pointer-events-none opacity-90">
           <ThreeBackground />
         </div>

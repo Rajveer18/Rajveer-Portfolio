@@ -1,6 +1,9 @@
+
 import { Github, Linkedin, Mail, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
+import { Canvas } from "@react-three/fiber";
+import { SkillsCard } from "./three-card";
 
 export function HeroSection() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -18,7 +21,15 @@ export function HeroSection() {
 
   return (
     <section className="relative pt-16 pb-20 md:py-28 overflow-hidden">
-      <div className="container mx-auto px-4">
+      <div className="absolute inset-0 pointer-events-none">
+        <Canvas camera={{ position: [0, 0, 8], fov: 45 }}>
+          <ambientLight intensity={0.5} />
+          <pointLight position={[10, 10, 10]} />
+          <SkillsCard />
+        </Canvas>
+      </div>
+      
+      <div className="container relative mx-auto px-4 z-10">
         <div className="flex flex-col items-center text-center perspective-[1000px]">
           <div 
             className="animate-fade-in transform-gpu transition-all duration-300 ease-out hover:scale-105"
@@ -35,7 +46,7 @@ export function HeroSection() {
             <h1 className="text-4xl md:text-6xl font-bold mb-4 font-heading text-balance bg-clip-text text-gray-900 dark:text-gray-100 drop-shadow-lg">
               Rajveer Raj
             </h1>
-            <p className="text-xl md:text-2xl mb-8 max-w-2xl text-pretty text-gray-800 dark:text-gray-200 font-medium drop-shadow-md"
+            <p className="text-xl md:text-2xl mb-8 max-w-2xl text-pretty text-gray-800 dark:text-gray-100 font-medium drop-shadow-md"
                style={{ 
                  transform: 'translateZ(20px)',
                }}>
