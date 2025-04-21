@@ -1,9 +1,29 @@
 
-import { FileText } from "lucide-react";
+import { FileText, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { toast } from "@/hooks/use-toast";
 
 export function CVSection() {
+  const handleDownload = () => {
+    // Direct download link
+    const googleDriveLink = "https://drive.google.com/uc?export=download&id=1fioDaUXk0MOYn4tfmb_g4XvkAArCkyyY";
+    
+    // Create an anchor element and trigger download
+    const link = document.createElement('a');
+    link.href = googleDriveLink;
+    link.setAttribute('download', 'Rajveer_Raj_CV.pdf');
+    link.setAttribute('target', '_blank');
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    
+    toast({
+      title: "Download Started",
+      description: "Your CV download has started. If it doesn't work, try the direct link instead.",
+    });
+  };
+
   return (
     <section id="cv" className="py-16 md:py-24">
       <div className="container mx-auto px-4">
@@ -20,17 +40,33 @@ export function CVSection() {
               experience, technical skills, and projects.
             </p>
             
-            <Button 
-              asChild
-              size="lg" 
-              className="gap-2"
-              variant="default"
-            >
-              <a href="/cv.pdf" download>
-                <FileText className="w-5 h-5" />
-                View Full CV
-              </a>
-            </Button>
+            <div className="flex flex-wrap gap-4 justify-center">
+              <Button 
+                onClick={handleDownload}
+                size="lg" 
+                className="gap-2"
+                variant="default"
+              >
+                <Download className="w-5 h-5" />
+                Download CV
+              </Button>
+              
+              <Button 
+                asChild
+                size="lg" 
+                className="gap-2"
+                variant="outline"
+              >
+                <a 
+                  href="https://drive.google.com/file/d/1fioDaUXk0MOYn4tfmb_g4XvkAArCkyyY/view" 
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <FileText className="w-5 h-5" />
+                  View CV Online
+                </a>
+              </Button>
+            </div>
           </CardContent>
         </Card>
       </div>
