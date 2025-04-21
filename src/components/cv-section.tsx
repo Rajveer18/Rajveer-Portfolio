@@ -6,22 +6,24 @@ import { toast } from "@/hooks/use-toast";
 
 export function CVSection() {
   const handleDownload = () => {
-    // Direct download link
+    // Use the direct Google Drive export download link
     const googleDriveLink = "https://drive.google.com/uc?export=download&id=1fioDaUXk0MOYn4tfmb_g4XvkAArCkyyY";
     
-    // Create an anchor element and trigger download
-    const link = document.createElement('a');
-    link.href = googleDriveLink;
-    link.setAttribute('download', 'Rajveer_Raj_CV.pdf');
-    link.setAttribute('target', '_blank');
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    
-    toast({
-      title: "Download Started",
-      description: "Your CV download has started. If it doesn't work, try the direct link instead.",
-    });
+    try {
+      // Open the link in a new tab to initiate download
+      window.open(googleDriveLink, "_blank");
+      
+      toast({
+        title: "Download Initiated",
+        description: "Your CV download has been initiated in a new tab.",
+      });
+    } catch (error) {
+      toast({
+        title: "Download Failed",
+        description: "Please try using the View CV Online button instead.",
+        variant: "destructive"
+      });
+    }
   };
 
   return (
