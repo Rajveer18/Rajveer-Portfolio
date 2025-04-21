@@ -7,26 +7,30 @@ const BIRD_COLORS = [
   new THREE.Color("#FFD372"),
   new THREE.Color("#FFA99F"),
   new THREE.Color("#FF719A"),
+  new THREE.Color("#9b87f5"),  // Use the vibrant primary purple
+  new THREE.Color("#33C3F0"),  // Use sky blue
   new THREE.Color("#F871A0"),
   new THREE.Color("#FFDEE2"),
+  new THREE.Color("#1EAEDB"),  // Bright blue
   new THREE.Color("#FFB2CE"),
+  new THREE.Color("#D6BCFA"),  // Light purple accent
 ];
 
 function clamp(x: number, min: number, max: number) {
   return Math.max(min, Math.min(x, max));
 }
 
-// Generate a single "bird" triangle shape
 function makeBirdGeometry() {
-  // Vertices roughly forming a triangle
+  // Larger triangle for more visibility (scaled up from original)
   const geometry = new THREE.BufferGeometry();
+  const scale = 1.5; // Increase size (original was ~0.2)
   const vertices = new Float32Array([
-    0.2, 0, 0,
-    -0.1, 0.15, 0,
-    -0.1,-0.15, 0
+    0.36 * scale, 0, 0,
+    -0.18 * scale, 0.31 * scale, 0,
+    -0.18 * scale, -0.31 * scale, 0
   ]);
   geometry.setAttribute("position", new THREE.BufferAttribute(vertices, 3));
-  // Random color for each corner
+  // Random color for each triangle
   const color = BIRD_COLORS[Math.floor(Math.random() * BIRD_COLORS.length)];
   const colors = new Float32Array([
     color.r, color.g, color.b,
@@ -43,26 +47,26 @@ function Bird({ bird, index }: { bird: any; index: number }) {
   useFrame((state) => {
     // Animate birds' movement in 3d
     const t = state.clock.getElapsedTime() + index;
-    bird.x += 0.03 * Math.sin(t + bird.seed);
-    bird.y += 0.03 * Math.cos(t + bird.seed + 10);
-    bird.z += 0.01 * Math.sin(t * 0.3 + bird.seed);
+    bird.x += 0.035 * Math.sin(t + bird.seed);         // Slightly faster
+    bird.y += 0.036 * Math.cos(t + bird.seed + 10);
+    bird.z += 0.018 * Math.sin(t * 0.32 + bird.seed);
+
     // Wrap around for seamless motion
-    if (bird.x > 25) bird.x = -25;
-    if (bird.x < -25) bird.x = 25;
-    if (bird.y > 12) bird.y = -12;
-    if (bird.y < -12) bird.y = 12;
-    if (bird.z > 10) bird.z = -10;
-    if (bird.z < -10) bird.z = 10;
-    // Hover effect
+    if (bird.x > 28) bird.x = -28;
+    if (bird.x < -28) bird.x = 28;
+    if (bird.y > 14) bird.y = -14;
+    if (bird.y < -14) bird.y = 14;
+    if (bird.z > 18) bird.z = -18;
+    if (bird.z < -18) bird.z = 18;
+
     ref.current.position.set(bird.x, bird.y, bird.z);
-    // Wobble/flap animations for triangles
-    ref.current.rotation.z = Math.sin(t * 2 + index) * 0.6;
-    ref.current.rotation.y = Math.sin(t * 1.8 + bird.seed) * 0.5;
-    ref.current.rotation.x = Math.cos(t * 1.6 + index) * 0.5;
-    // "Point" birds in flying direction (optional!)
+
+    // Motion/flap effect
+    ref.current.rotation.z = Math.sin(t * 2.1 + index) * 0.6;
+    ref.current.rotation.y = Math.sin(t * 1.7 + bird.seed) * 0.49;
+    ref.current.rotation.x = Math.cos(t * 2.0 + index) * 0.44;
   });
 
-  // Memoize geometry for perf
   const geometry = React.useMemo(() => makeBirdGeometry(), []);
   return (
     <mesh ref={ref} geometry={geometry}>
@@ -70,19 +74,18 @@ function Bird({ bird, index }: { bird: any; index: number }) {
         vertexColors
         side={THREE.DoubleSide}
         transparent={true}
-        opacity={0.79}
+        opacity={0.85}
       />
     </mesh>
   );
 }
 
-function BirdsField({ count = 120, mouse }: { count?: number; mouse: THREE.Vector2 }) {
-  // Generate birds with random positions and seeds for movement
+function BirdsField({ count = 220, mouse }: { count?: number; mouse: THREE.Vector2 }) {
   const birds = React.useMemo(() =>
     Array.from({ length: count }).map(() => ({
-      x: (Math.random() - 0.3) * 50,
-      y: (Math.random() - 0.2) * 20,
-      z: (Math.random() - 0.5) * 20,
+      x: (Math.random() - 0.3) * 56,
+      y: (Math.random() - 0.2) * 26,
+      z: (Math.random() - 0.5) * 36,
       seed: Math.random() * 1000,
     }))
   , [count]);
@@ -98,26 +101,24 @@ function BirdsField({ count = 120, mouse }: { count?: number; mouse: THREE.Vecto
 
 export const ThreeBackground = () => {
   const [mouse, setMouse] = useState<THREE.Vector2>(new THREE.Vector2(0, 0));
-  // Mouse movement effect (camera parallax)
+  // Capture mouse movement for parallax
   const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
-    // Normalize -1 to 1 horizontally/vertically
     const x = (e.clientX / window.innerWidth) * 2 - 1;
     const y = (e.clientY / window.innerHeight) * 2 - 1;
     setMouse(new THREE.Vector2(x, y));
   };
 
-  // Render Three.js Canvas background
   return (
     <div
       className="fixed inset-0 -z-10"
       style={{
-        background: "#06112B"
+        background: "radial-gradient(circle at 60% 40%, #0EA5E9 15%, #1A1F2C 98%)",
       }}
       onPointerMove={handlePointerMove}
       aria-hidden="true"
     >
       <Canvas
-        camera={{ position: [0, 0, 32], fov: 75 }}
+        camera={{ position: [0, 0, 36], fov: 75 }}
         gl={{ antialias: true, alpha: true }}
         style={{
           width: "100vw",
@@ -125,24 +126,22 @@ export const ThreeBackground = () => {
           position: "absolute",
           top: 0,
           left: 0,
-          pointerEvents: "none", // Let user interact with UI
+          pointerEvents: "none",
         }}
       >
-        {/* Camera parallax on mouse */}
         <ParallaxCamera mouse={mouse} />
-        {/* Simple ambient and faint directional light (if needed) */}
-        <ambientLight intensity={0.6} />
-        <BirdsField count={140} mouse={mouse} />
+        <ambientLight intensity={0.69} />
+        <BirdsField count={240} mouse={mouse} />
       </Canvas>
     </div>
   );
 };
 
-// Component for a gentle parallax camera
 function ParallaxCamera({ mouse }: { mouse: THREE.Vector2 }) {
   useFrame(({ camera }) => {
-    camera.position.x += (mouse.x * 6 - camera.position.x) * 0.03;
-    camera.position.y += (-mouse.y * 3 - camera.position.y) * 0.03;
+    // Stronger movement for more effect
+    camera.position.x += (mouse.x * 11 - camera.position.x) * 0.07;
+    camera.position.y += (-mouse.y * 6 - camera.position.y) * 0.07;
     camera.lookAt(0, 0, 0);
   });
   return null;
