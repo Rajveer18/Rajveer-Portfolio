@@ -28,7 +28,7 @@ export function CVSection() {
                 variant="default"
               >
                 <a 
-                  href="https://drive.google.com/file/d/1fioDaUXk0MOYn4tfmb_g4XvkAArCkyyY/view" 
+                  href="https://drive.google.com/file/d/1IjSLlKGUvSpX-csYIZ-_Dpj00rzTnUWG/view" 
                   target="_blank"
                   rel="noreferrer"
                 >
